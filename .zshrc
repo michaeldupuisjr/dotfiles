@@ -4,6 +4,7 @@ autoload -U colors && colors
 PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~ %{$reset_color%}%% "
 
 # Aliases
+alias dotfiles="cd ~/Code/dotfiles"
 alias reseed="rails db:drop && rails db:create && rails db:migrate && rails db:seed && rails db:test:prepare"
 alias rails_test="rails test && rails test:system"
 
