@@ -24,3 +24,10 @@ fi
 rm -f ~/.zcompdump; compinit
 
 eval "$(rbenv init -)"
+
+# For compilers to find Ruby
+export LDFLAGS="-L/usr/local/opt/ruby/lib"
+export CPPFLAGS="-I/usr/local/opt/ruby/include"
+
+# For pkg-config to find ruby you may need to set:
+export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
