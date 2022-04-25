@@ -7,6 +7,7 @@ PS1="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%~ %{$reset_c
 alias dotfiles="cd ~/Code/dotfiles"
 alias reseed="rails db:drop && rails db:create && rails db:migrate && rails db:seed && rails db:test:prepare"
 alias rails_test="rails test && rails test:system"
+alias brew='sudo -Hu michaeldupuisjr brew' # https://www.codejam.info/2021/11/homebrew-multi-user.html
 
 # Local zsh aliases
 if [ -f ~/Code/dotfiles/.zshrc-local ]; then
@@ -15,12 +16,15 @@ if [ -f ~/Code/dotfiles/.zshrc-local ]; then
   print "No zshrc-local found in ~/Code/dotfiles."
 fi
 
+# configure completions in zsh (https://docs.brew.sh/Shell-Completion)
 if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
   autoload -Uz compinit
   compinit
 fi
+
+# forcibly rebuild zcompdump (https://docs.brew.sh/Shell-Completion)
 rm -f ~/.zcompdump; compinit
 
 eval "$(rbenv init -)"
